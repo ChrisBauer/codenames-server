@@ -14,89 +14,96 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <project>
-    <modelVersion>4.0.0</modelVersion>
-    <version>1.0.0</version>
-    <groupId>com.example.flex</groupId>
-    <artifactId>getting-started-java</artifactId>
-    <packaging>pom</packaging>
+  <modelVersion>4.0.0</modelVersion>
 
-    <!-- Parent POM defines common plugins and properties. -->
-    <parent>
-        <groupId>com.google.cloud.samples</groupId>
-        <artifactId>shared-configuration</artifactId>
-        <version>1.0.1</version>
-    </parent>
+  <groupId>com.example.flex.gettingstarted</groupId>
+  <artifactId>codenames-server</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>codenames-server</name>
+  <description>Server for the codenames game</description>
 
-    <repositories>
-      <repository>
-        <id>snapshots-repo</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        <releases><enabled>false</enabled></releases>
-        <snapshots><enabled>true</enabled></snapshots>
-      </repository>
-<!--
-      <repository>
-        <releases>
-          <enabled>true</enabled>
-          <updatePolicy>daily</updatePolicy>
-          <checksumPolicy>warn</checksumPolicy>
-        </releases>
-        <snapshots>
-          <enabled>false</enabled>
-          <updatePolicy>never</updatePolicy>
-          <checksumPolicy>fail</checksumPolicy>
-        </snapshots>
-        <id>google-maven-central</id>
-        <name>Google Maven Central</name>
-        <url>https://maven-central.storage.googleapis.com</url>
-        <layout>default</layout>
-      </repository>
- -->
-    </repositories>
+  <!-- Parent POM defines common plugins and properties. -->
+  <parent>
+      <groupId>com.google.cloud.samples</groupId>
+      <artifactId>shared-configuration</artifactId>
+      <version>1.0.1</version>
+  </parent>
 
-    <pluginRepositories>
-      <pluginRepository>
-        <id>snapshots-repo</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        <releases><enabled>false</enabled></releases>
-        <snapshots><enabled>true</enabled></snapshots>
-         <layout>default</layout>
-     </pluginRepository>
-<!--
-      <pluginRepository>
-        <releases>
-          <enabled>true</enabled>
-          <updatePolicy>daily</updatePolicy>
-          <checksumPolicy>warn</checksumPolicy>
-        </releases>
-        <snapshots>
-          <enabled>false</enabled>
-          <updatePolicy>never</updatePolicy>
-          <checksumPolicy>fail</checksumPolicy>
-        </snapshots>
-        <id>google-maven-central</id>
-        <name>Google Maven Central</name>
-        <url>https://maven-central.storage.googleapis.com</url>
-        <layout>default</layout>
-      </pluginRepository>
- -->
-    </pluginRepositories>
+  <repositories>
+    <repository>
+      <id>snapshots-repo</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases><enabled>false</enabled></releases>
+      <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+  </repositories>
 
-    <prerequisites>
-        <maven>3.3.9</maven>
-    </prerequisites>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>snapshots-repo</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases><enabled>false</enabled></releases>
+      <snapshots><enabled>true</enabled></snapshots>
+       <layout>default</layout>
+   </pluginRepository>
+  </pluginRepositories>
 
-    <modules>
-        <module>codenames-server</module>
-    </modules>
+  <prerequisites>
+      <maven>3.3.9</maven>
+  </prerequisites>
+  <reporting>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jxr-plugin</artifactId>
+              <version>2.3</version>
+          </plugin>
+      </plugins>
+  </reporting>
 
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.3</version>
-            </plugin>
-        </plugins>
-    </reporting>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+    <appengine.maven.plugin>1.0.0</appengine.maven.plugin>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>1.4.2.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <version>1.4.2.RELEASE</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>1.3.3.RELEASE</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+<!-- START plugin -->
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>appengine-maven-plugin</artifactId>
+        <version>${appengine.maven.plugin}</version>
+      </plugin>
+<!-- END plugin -->
+    </plugins>
+  </build>
 </project>
