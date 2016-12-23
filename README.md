@@ -8,3 +8,8 @@ run on cloud: make sure gcloud project is configured properly, then run
 ### More Information
 
 Based on the [springboot example](https://github.com/GoogleCloudPlatform/getting-started-java/tree/master/helloworld-springboot)
+
+### Potentially Useful Links
+
+- [ControllerNotFound](https://smarterco.de/java-spring-boot-mvc-controller-not-called/)
+- 
