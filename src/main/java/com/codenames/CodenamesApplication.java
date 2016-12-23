@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class CodenamesApplication {
+
   @RequestMapping("/")
   public String home() {
     return "Hello Codenames!";
